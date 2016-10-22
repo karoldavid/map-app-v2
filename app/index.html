@@ -24,7 +24,14 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
+    <div id="container">
+      <ul data-bind="foreach: places">
+        <li>
+          <span data-bind="text: name"></span>
+        </li>
+      </ul>
+    </div>
+
     <div id="map"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

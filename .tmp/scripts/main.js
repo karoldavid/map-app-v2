@@ -2,7 +2,22 @@
 
 var map;
 
-var locations = [];
+function textSearchPlaces(places) {
+	var bounds = map.getBounds();
+	var placesService = new google.maps.places.PlacesService(map);
+
+	placesService.textSearch({
+		query: "restaurants",
+		bounds: bounds
+	}, function (results, status) {
+		if (status === google.maps.places.PlacesServiceStatus.OK) {
+			console.log(results);
+			results.forEach(function (result) {
+				places.push(result);
+			});
+		}
+	});
+}
 
 function initMap() {
 
@@ -15,26 +30,14 @@ function initMap() {
 		mapTypeControl: false
 	});
 
-	function textSearchPlaces() {
-		var bounds = map.getBounds();
-		var placesService = new google.maps.places.PlacesService(map);
-
-		placesService.textSearch({
-			query: "restaurants",
-			bounds: bounds
-		}, function (results, status) {
-			if (status === google.maps.places.PlacesServiceStatus.OK) {
-				console.log(results);
-			}
-		});
-	}
-
-	textSearchPlaces();
+	ko.applyBindings(new ViewModel());
 }
 
 var ViewModel = function ViewModel() {
 	var self = this;
-};
 
-ko.applyBindings(new ViewModel());
+	this.places = ko.observableArray();
+
+	textSearchPlaces(this.places);
+};
 //# sourceMappingURL=main.js.map
