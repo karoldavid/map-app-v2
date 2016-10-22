@@ -14,7 +14,7 @@ html, body {
  *
  */
 
-#container {
+.container {
   z-index: 100;
   position: relative;
 }
