@@ -9,6 +9,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/materialize/bin/materialize.css" />
@@ -24,17 +26,26 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div class="container">
-      <div class="row">
-        <div class="col s2">
-          <ul class="collection" data-bind="foreach: places">
-            <li class="collection-item">
-              <span data-bind="text: name"></span>
-            </li>
-          </ul>
+    
+    <main>
+
+        <!-- http://materializecss.com/side-nav.html -->
+        <div id="slide-out" class="side-nav fixed hide-on-med-and-down">
+            <ul class="collection" data-bind="foreach: places">
+                <li class="collection-item avatar">
+                    <img data-bind="attr: { href: icon, title: name }" src="images/yuna.jpg" alt="" class="circle">
+                    <span class="title" data-bind="text: name"></span>
+                    <p data-bind="text: formatted_address"></p>
+                    <p data-bind="text: rating"></p>
+                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+            </ul>
         </div>
-      </div>
-    </div>
+
+        <a href="#" data-activates="slide-out" class="button-collapse right"><i class="small material-icons">menu</i></a>
+
+    </main>
+
     <div id="map"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -46,7 +57,7 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
     </script>
-
+        
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -58,6 +69,16 @@
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
-      <script src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyDB2twrWRm7tw2ZtFIWakViLeMz58U9QL8&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyDB2twrWRm7tw2ZtFIWakViLeMz58U9QL8&callback=initMap" async defer></script>
+
+    <script>
+      // Initialize collapse button
+      $('.button-collapse').sideNav({
+          menuWidth: 600, // Default is 240
+          edge: 'left', // Choose the horizontal origin
+          closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        }
+      );
+    </script>
   </body>
 </html>

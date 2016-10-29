@@ -19,6 +19,16 @@ html, body {
   position: relative;
 }
 
+main {
+  z-index: 100;
+  position: relative; 
+}
+
+.side-nav {
+  z-index: 100;
+  position: relative;
+}
+
 #map {
   height: 100%;
   position: absolute; 
@@ -27,5 +37,20 @@ html, body {
   left: 0; 
   right: 0; 
   z-index: 0;
+}
+
+/*
+ * http://materializecss.com/side-nav.html
+ *
+ */
+
+header, main, footer {
+  padding-left: 600px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
 }
 

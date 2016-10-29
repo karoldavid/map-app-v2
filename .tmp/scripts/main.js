@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var map;
 
@@ -7,7 +7,7 @@ function textSearchPlaces(places) {
 	var placesService = new google.maps.places.PlacesService(map);
 
 	placesService.textSearch({
-		query: "restaurants berlin germany",
+		query: 'restaurants berlin germany',
 		bounds: bounds
 	}, function (results, status) {
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
