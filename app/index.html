@@ -32,11 +32,10 @@
         <!-- http://materializecss.com/side-nav.html -->
         <div id="slide-out" class="side-nav fixed hide-on-med-and-down">
             <ul class="collection" data-bind="foreach: places">
-                <li class="collection-item avatar">
-                    <img data-bind="attr: { href: icon, title: name }" src="images/yuna.jpg" alt="" class="circle">
+                <li class="collection-item avatar light-blue lighten-3 white-text">
+                    <img data-bind="attr: { src: icon, title: name }" src="" alt="" class="circle">
                     <span class="title" data-bind="text: name"></span>
                     <p data-bind="text: formatted_address"></p>
-                    <p data-bind="text: rating"></p>
                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>
             </ul>
