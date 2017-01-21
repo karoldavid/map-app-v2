@@ -35,7 +35,8 @@
                 <li class="collection-item avatar light-blue lighten-3 white-text">
                     <img data-bind="attr: { src: icon, title: name }" src="" alt="" class="circle">
                     <span class="title" data-bind="text: name"></span>
-                    <p data-bind="text: formatted_address"></p>
+<!--                     <p data-bind="text: formatted_address"></p>
+ -->                    <p data-bind="text: vicinity"></p>
                     <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>
             </ul>
@@ -49,7 +50,7 @@
 
       <!-- Knockout template for the InfoWindow-->
      <script type="text/html" id="info-window-template">
-       <h5 data-bind="text: $data"></h5>
+       <h4 data-bind="text: $data"></h4>
     </script>
         
     <!-- build:js scripts/vendor.js -->
