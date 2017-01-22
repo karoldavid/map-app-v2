@@ -14,29 +14,37 @@ html, body {
  *
  */
 
-.container {
+/*.container {
   z-index: 100;
   position: relative;
 }
+
 
 main {
   z-index: 100;
   position: relative; 
 }
 
+
 .side-nav {
-  z-index: 100;
+  z-index: 999;
+  position: relative;
+}*/
+
+.menu-icon {
+  z-index: 999;
   position: relative;
 }
+
 
 #map {
   height: 100%;
   position: absolute; 
+  z-index: 0;
   top: 0; 
   bottom: -200px; 
   left: 0; 
   right: 0; 
-  z-index: 0;
 }
 
 /*

@@ -26,11 +26,13 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+
+    <div id="map"></div>
     
     <main>
 
         <!-- http://materializecss.com/side-nav.html -->
-        <div id="slide-out" class="side-nav fixed hide-on-med-and-down">
+        <div id="slide-out" class="side-nav fixed">
             <ul class="collection" data-bind="foreach: places">
                 <li class="collection-item avatar light-blue lighten-3 white-text">
                     <img data-bind="attr: { src: icon, title: name }" src="" alt="" class="circle">
@@ -42,11 +44,9 @@
             </ul>
         </div>
 
-        <a href="#" data-activates="slide-out" class="button-collapse right"><i class="small material-icons">menu</i></a>
+      	<a href="#" data-activates="slide-out" class="menu-icon button-collapse right hide-on-large-only"><i class="small material-icons">menu</i></a>
 
     </main>
-
-    <div id="map"></div>
 
       <!-- Knockout template for the InfoWindow-->
      <script type="text/html" id="info-window-template">
@@ -69,7 +69,7 @@
     <script>
       // Initialize collapse button
       $('.button-collapse').sideNav({
-          menuWidth: 600, // Default is 240
+          menuWidth: 500, // Default is 240
           edge: 'left', // Choose the horizontal origin
           closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
         }
