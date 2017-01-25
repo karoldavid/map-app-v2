@@ -31,6 +31,12 @@ main {
   position: relative;
 }*/
 
+.search-box {
+  z-index: 999;
+  position: relative;
+  width: 500px;
+}
+
 .menu-icon {
   z-index: 999;
   position: relative;

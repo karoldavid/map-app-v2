@@ -33,6 +33,17 @@
 
         <!-- http://materializecss.com/side-nav.html -->
         <div id="slide-out" class="side-nav fixed">
+            <nav class="search-box">
+              <div class="nav-wrapper">
+                <form>
+                  <div class="input-field light-blue lighten-3 white-text">
+                    <input id="search" type="search" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
             <ul class="collection" data-bind="foreach: places">
                 <li class="collection-item avatar light-blue lighten-3 white-text">
                     <img data-bind="attr: { src: icon, title: name }" src="" alt="" class="circle">
