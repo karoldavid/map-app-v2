@@ -37,14 +37,14 @@
               <div class="nav-wrapper">
                 <form>
                   <div class="input-field light-blue lighten-3 white-text">
-                    <input id="search" type="search" required>
+                    <input id="search" type="search" required data-bind="textInput: query">
                     <label for="search"><i class="material-icons">search</i></label>
                     <i class="material-icons">close</i>
                   </div>
                 </form>
               </div>
             </nav>
-            <ul class="collection" data-bind="foreach: places">
+            <ul class="collection" data-bind="foreach: filteredPlaces">
                 <li class="collection-item avatar light-blue lighten-3 white-text">
                     <img data-bind="attr: { src: icon, title: name }" src="" alt="" class="circle">
                     <span class="title" data-bind="text: name"></span>

@@ -266,6 +266,8 @@ var Place = function(data, vm) {
 var ViewModel = function() {
     var self = this;
 
+    this.query = ko.observable('');
+
     this.places = ko.observableArray([]);
 
     this.currentLocation = ko.observable('');
@@ -332,8 +334,16 @@ var ViewModel = function() {
                 isInfoWindowLoaded = true;
             }
         });
-
     };
+
+    this.filteredPlaces = ko.computed(function() {
+        var query = self.query().toLowerCase();
+        return ko.utils.arrayFilter(self.places(), function(place) {
+            var name = place.name.toLowerCase();
+            var match = name.indexOf(query) != -1;
+            return match;
+        });
+    });
 };
 
 ko.applyBindings(new ViewModel());
