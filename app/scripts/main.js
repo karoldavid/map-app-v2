@@ -343,11 +343,10 @@ var ViewModel = function() {
 
     this.filteredPlaces = ko.computed(function() {
         var query = self.query().toLowerCase();
-        return ko.utils.arrayFilter(self.places(), function(place) {
+        self.places().forEach(function(place) {
             var name = place.name.toLowerCase();
             var match = name.indexOf(query) != -1;
             place.visible(match);
-            return match;
         });
     });
 };
