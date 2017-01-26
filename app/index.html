@@ -45,7 +45,7 @@
               </div>
             </nav>
             <ul class="collection" data-bind="foreach: places">
-                <li data-bind="visible: visible" class="collection-item avatar light-blue lighten-3 white-text">
+                <li data-bind="visible: visible, click: $root.activateMarker" class="collection-item avatar light-blue lighten-3 white-text">
                     <img data-bind="attr: { src: icon, title: name }" src="" alt="" class="circle">
                     <span class="title" data-bind="text: name"></span>
 <!--                     <p data-bind="text: formatted_address"></p>

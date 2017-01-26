@@ -349,6 +349,11 @@ var ViewModel = function() {
             place.visible(match);
         });
     });
+
+    this.activateMarker = function(place) {
+        var marker = place.marker;
+        google.maps.event.trigger(marker, 'click');
+    };
 };
 
 ko.applyBindings(new ViewModel());
