@@ -252,9 +252,14 @@ var Place = function(data, vm) {
     var self = this;
 
     this.name = data.name;
+    this.visible = ko.observable(true);
     this.marker = data.marker;
     this.icon = data.icon;
     this.vicinity = data.vicinity;
+
+    this.toggleVisibility = ko.computed(function() {
+        self.marker.setVisible(self.visible());
+    });
 
     this.marker.addListener('click', function(){
         var marker = this;
@@ -341,6 +346,7 @@ var ViewModel = function() {
         return ko.utils.arrayFilter(self.places(), function(place) {
             var name = place.name.toLowerCase();
             var match = name.indexOf(query) != -1;
+            place.visible(match);
             return match;
         });
     });
