@@ -296,6 +296,10 @@ var ViewModel = function() {
         function callback(results, status) {
             console.log(results);
             if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+                var defaultIcon = getPin('d50f25');
+                var highlightedIcon = getPin('FFFF24');
+
                 for (var i = 0; i < results.length; i++) {
                     var place = results[i];
                     var position = place.geometry.location;
@@ -303,11 +307,19 @@ var ViewModel = function() {
                     var marker = new google.maps.Marker({
                         position: position,
                         map: map,
-                        icon: getPin('d50f25'),
+                        icon: defaultIcon,
                         title: name,
                         animation: google.maps.Animation.Drop,
                         id: i
                     });
+
+                marker.addListener('mouseover', function(){
+                    this.setIcon(highlightedIcon);
+                });
+
+                marker.addListener('mouseout', function(){
+                    this.setIcon(defaultIcon);
+                });
 
                     place.marker = marker;
                     places.push(new Place(place, self));
