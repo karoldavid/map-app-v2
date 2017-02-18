@@ -61,7 +61,9 @@
 
       <!-- Knockout template for the InfoWindow-->
      <script type="text/html" id="info-window-template">
-       <h4 data-bind="text: $data"></h4>
+       <h6 data-bind="text: $data[0]"></h6>
+       <p data-bind="text: $data[1]"></p>
+       <img data-bind="attr: { src: $data[2] }">
     </script>
         
     <!-- build:js scripts/vendor.js -->
