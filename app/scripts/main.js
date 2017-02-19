@@ -278,100 +278,6 @@ var ViewModel = function() {
 
     this.infoWindowData = ko.observableArray([]);
 
-    this.nearbySearch = function(places, position) {
-        var request = {
-            location: position,
-            radius: '1000',
-            types: ['art_gallery']
-        };
-
-        var service = new google.maps.places.PlacesService(self.map);
-        service.nearbySearch(request, callback);
-
-        function callback(results, status) {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-
-                var defaultIcon = getPin('d50f25');
-                var highlightedIcon = getPin('FFFF24');
-
-                for (var i = 0; i < results.length; i++) {
-                    var place = results[i];
-                    var position = place.geometry.location;
-                    var name = place.name;
-                    var marker = new google.maps.Marker({
-                        position: position,
-                        map: self.map,
-                        icon: defaultIcon,
-                        title: name,
-                        animation: google.maps.Animation.Drop,
-                        id: results[i].place_id
-                    });
-
-                marker.addListener('mouseover', function(){
-                    this.setIcon(highlightedIcon);
-                });
-
-                marker.addListener('mouseout', function(){
-                    this.setIcon(defaultIcon);
-                });
-
-                    place.marker = marker;
-                    places.push(new Place(place, self));
-                   
-                }
-            }
-        }
-    };
-
-    this.getPlacesDetails = function(marker) {
-        self.infoWindowData([]);
-
-        var service = new google.maps.places.PlacesService(vm.map);
-        service.getDetails({
-            placeId: marker.id
-        }, function(place, status) {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-            // Set the marker property on this infowindow so it isn't created again.
-
-                if (place.name) {
-                    self.infoWindowData.push(place.name); 
-                }
-
-                if (place.formatted_address) {
-                    self.infoWindowData.push(place.formatted_phone_number);
-                }
-
-                if (place.photos) {
-                    self.infoWindowData.push(place.photos[0].getUrl(
-                        {maxHeight: 100, maxWidth: 200}));
-                }
-            }
-        });
-    }
-
-
-    this.initializeInfoWindow = function() {
-
-        var contentString = '<div id="info-window"' + 'data-bind="template: { name: \'info-window-template\', data: infoWindowData}">' + '</div>';
-
-        var isInfoWindowLoaded = false;
-
-        self.infoWindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-
-        /*
-         * When the info window opens, bind it to Knockout.
-         * Only do this once.
-         */
-         google.maps.event.addListener(self.infoWindow, 'domready', function () {
-            if (!isInfoWindowLoaded) {
-                ko.applyBindings(self, $('#info-window')[0]);
-                isInfoWindowLoaded = true;
-            }
-        });
-    };
-
     this.filteredPlaces = ko.computed(function() {
         var query = self.query().toLowerCase();
         self.places().forEach(function(place) {
@@ -381,10 +287,105 @@ var ViewModel = function() {
         });
     });
 
-    this.activateMarker = function(place) {
-        var marker = place.marker;
-        google.maps.event.trigger(marker, 'click');
+};
+
+ViewModel.prototype.nearbySearch = function(places, position)  {
+    var self = this;
+    var request = {
+        location: position,
+        radius: '1000',
+        types: ['art_gallery']
     };
+
+    var service = new google.maps.places.PlacesService(self.map);
+    service.nearbySearch(request, callback);
+
+    function callback(results, status) {
+        if (status == google.maps.places.PlacesServiceStatus.OK) {
+
+            var defaultIcon = getPin('d50f25');
+            var highlightedIcon = getPin('FFFF24');
+
+           for (var i = 0; i < results.length; i++) {
+                var place = results[i];
+                var position = place.geometry.location;
+                var name = place.name;
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: self.map,
+                    icon: defaultIcon,
+                    title: name,
+                    animation: google.maps.Animation.Drop,
+                    id: results[i].place_id
+                });
+
+                marker.addListener('mouseover', function(){
+                    this.setIcon(highlightedIcon);
+                });
+
+                marker.addListener('mouseout', function(){
+                    this.setIcon(defaultIcon);
+                });
+
+                place.marker = marker;
+                places.push(new Place(place, self));
+                   
+            }
+        }
+    }
+};
+
+ViewModel.prototype.getPlacesDetails = function(marker) {
+    var self = this;
+    self.infoWindowData([]);
+
+    var service = new google.maps.places.PlacesService(self.map);
+    service.getDetails({
+        placeId: marker.id
+    }, function(place, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+        // Set the marker property on this infowindow so it isn't created again.
+
+            if (place.name) {
+                self.infoWindowData.push(place.name); 
+            }
+
+            if (place.formatted_address) {
+                self.infoWindowData.push(place.formatted_phone_number);
+            }
+
+            if (place.photos) {
+                self.infoWindowData.push(place.photos[0].getUrl(
+                    {maxHeight: 100, maxWidth: 200}));
+            }
+        }
+    });
+};
+
+ViewModel.prototype.initializeInfoWindow = function() {
+    var self = this;
+    var contentString = '<div id="info-window"' + 'data-bind="template: { name: \'info-window-template\', data: infoWindowData}">' + '</div>';
+    var isInfoWindowLoaded = false;
+
+    self.infoWindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+
+    /*
+     * When the info window opens, bind it to Knockout.
+     * Only do this once.
+     */
+    google.maps.event.addListener(self.infoWindow, 'domready', function () {
+        if (!isInfoWindowLoaded) {
+            ko.applyBindings(self, $('#info-window')[0]);
+            isInfoWindowLoaded = true;
+        }
+    });
+};
+
+ViewModel.prototype.activateMarker = function(place) {
+    var marker = place.marker;
+    google.maps.event.trigger(marker, 'click');
 };
 
 ko.applyBindings(new ViewModel());
