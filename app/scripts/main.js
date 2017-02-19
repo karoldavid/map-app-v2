@@ -1,5 +1,3 @@
-var map;
-
 /** @credit: https://snazzymaps.com/style/80276/causely-map */
 var styles = [{
     'featureType': 'administrative',
@@ -212,7 +210,7 @@ function getPin(color) {
 function initMap() {
     var vm = ko.dataFor(document.body);
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    vm.map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: 37.430594,
             lng: -122.168581
@@ -229,7 +227,7 @@ function initMap() {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-            map.setCenter(pos);
+            vm.map.setCenter(pos);
             vm.nearbySearch(vm.places, pos);
           }, function() {
             handleLocationError(true);
@@ -265,9 +263,8 @@ var Place = function(data, vm) {
         var marker = this;
         vm.currentLocation(self);
         vm.getPlacesDetails(marker);
-        vm.infoWindow.open(map, marker)
+        vm.infoWindow.open(vm.map, marker)
     });
-    //vm.infoWindowData.push(this.name);
 };
 
 var ViewModel = function() {
@@ -288,7 +285,7 @@ var ViewModel = function() {
             types: ['art_gallery']
         };
 
-        var service = new google.maps.places.PlacesService(map);
+        var service = new google.maps.places.PlacesService(self.map);
         service.nearbySearch(request, callback);
 
         function callback(results, status) {
@@ -303,7 +300,7 @@ var ViewModel = function() {
                     var name = place.name;
                     var marker = new google.maps.Marker({
                         position: position,
-                        map: map,
+                        map: self.map,
                         icon: defaultIcon,
                         title: name,
                         animation: google.maps.Animation.Drop,
@@ -329,7 +326,7 @@ var ViewModel = function() {
     this.getPlacesDetails = function(marker) {
         self.infoWindowData([]);
 
-        var service = new google.maps.places.PlacesService(map);
+        var service = new google.maps.places.PlacesService(vm.map);
         service.getDetails({
             placeId: marker.id
         }, function(place, status) {
