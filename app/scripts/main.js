@@ -213,12 +213,27 @@ $(function() {
 
   var Place = function(data, vm) {
     var self = this;
+    var position = data.geometry.location;
+    var title = data.name;
+    var defaultIcon = getPin('d50f25');
+    var highlightedIcon = getPin('FFFF24');
 
     this.name = data.name;
     this.visible = ko.observable(true);
     this.marker = data.marker;
     this.icon = data.icon;
     this.vicinity = data.vicinity;
+
+    this.marker = new google.maps.Marker({
+            position: position,
+            map: vm.map,
+            icon: defaultIcon,
+            defaultIcon: defaultIcon,
+            highlightedIcon, highlightedIcon,
+            title: title,
+            animation: google.maps.Animation.Drop,
+            id: data.place_id
+          });
 
     this.toggleVisibility = ko.computed(function() {
       self.marker.setVisible(self.visible());
@@ -229,6 +244,14 @@ $(function() {
       vm.currentLocation(self);
       vm.getPlacesDetails(marker);
       vm.infoWindow.open(vm.map, marker)
+    });
+
+    this.marker.addListener('mouseover', function() {
+      this.setIcon(this.highlightedIcon);
+    });
+
+    this.marker.addListener('mouseout', function() {
+      this.setIcon(this.defaultIcon);
     });
   };
 
@@ -268,31 +291,8 @@ $(function() {
     function callback(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
 
-        var defaultIcon = getPin('d50f25');
-        var highlightedIcon = getPin('FFFF24');
-
         for (var i = 0; i < results.length; i++) {
           var place = results[i];
-          var position = place.geometry.location;
-          var name = place.name;
-          var marker = new google.maps.Marker({
-            position: position,
-            map: self.map,
-            icon: defaultIcon,
-            title: name,
-            animation: google.maps.Animation.Drop,
-            id: results[i].place_id
-          });
-
-          marker.addListener('mouseover', function() {
-            this.setIcon(highlightedIcon);
-          });
-
-          marker.addListener('mouseout', function() {
-            this.setIcon(defaultIcon);
-          });
-
-          place.marker = marker;
           places.push(new Place(place, self));
 
         }
