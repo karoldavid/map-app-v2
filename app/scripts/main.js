@@ -355,21 +355,9 @@ $(function() {
     google.maps.event.trigger(marker, 'click');
   };
 
-  ViewModel.prototype.initMap = function() {
-
+  ViewModel.prototype.getPlaces = function() {
     var self = this;
-
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: 37.430594,
-        lng: -122.168581
-      }, // 20 Palm Drive, Stanford, CA 94305, USA
-      zoom: 16,
-      styles: styles,
-      mapTypeControl: false
-    });
-
-    // Try HTML5 geolocation
+       // Try HTML5 geolocation
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
@@ -392,6 +380,23 @@ $(function() {
       alert('Error: The Geolocation service failed.');
     }
 
+  };
+
+  ViewModel.prototype.initMap = function() {
+
+    var self = this;
+
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: 37.430594,
+        lng: -122.168581
+      }, // 20 Palm Drive, Stanford, CA 94305, USA
+      zoom: 16,
+      styles: styles,
+      mapTypeControl: false
+    });
+
+    this.getPlaces();
     this.initializeInfoWindow();
   }
 
