@@ -1,252 +1,217 @@
-/** @credit: https://snazzymaps.com/style/80276/causely-map */
-var styles = [{
+var app = app || {};
+
+$(function() {
+
+  /** @credit: https://snazzymaps.com/style/80276/causely-map */
+  var styles = [{
     'featureType': 'administrative',
     'elementType': 'labels.text.fill',
     'stylers': [{
-        'color': '#333333'
+      'color': '#333333'
     }, {
-        'lightness': '40'
+      'lightness': '40'
     }]
-}, {
+  }, {
     'featureType': 'administrative.country',
     'elementType': 'labels.text.fill',
     'stylers': [{
-        'color': '#007e7a'
+      'color': '#007e7a'
     }]
-}, {
+  }, {
     'featureType': 'administrative.province',
     'elementType': 'labels.text.fill',
     'stylers': [{
-        'color': '#333333'
+      'color': '#333333'
     }]
-}, {
+  }, {
     'featureType': 'administrative.locality',
     'elementType': 'labels.text',
     'stylers': [{
-        'weight': '1.42'
+      'weight': '1.42'
     }]
-}, {
+  }, {
     'featureType': 'administrative.neighborhood',
     'elementType': 'labels.text.fill',
     'stylers': [{
-        'color': '#007e7a'
+      'color': '#007e7a'
     }, {
-        'lightness': '15'
+      'lightness': '15'
     }]
-}, {
+  }, {
     'featureType': 'landscape.man_made',
     'elementType': 'geometry.fill',
     'stylers': [{
-        'color': '#00b1ac'
+      'color': '#00b1ac'
     }, {
-        'lightness': '75'
+      'lightness': '75'
     }, {
-        'saturation': '-46'
+      'saturation': '-46'
     }]
-}, {
+  }, {
     'featureType': 'landscape.natural',
     'elementType': 'geometry.fill',
     'stylers': [{
-        'visibility': 'on'
+      'visibility': 'on'
     }, {
-        'color': '#e0efef'
+      'color': '#e0efef'
     }]
-}, {
+  }, {
     'featureType': 'landscape.natural.landcover',
     'elementType': 'geometry.fill',
     'stylers': [{
-        'saturation': '35'
+      'saturation': '35'
     }, {
-        'lightness': '8'
+      'lightness': '8'
     }, {
-        'visibility': 'simplified'
+      'visibility': 'simplified'
     }]
-}, {
+  }, {
     'featureType': 'poi',
     'elementType': 'geometry.fill',
     'stylers': [{
-        'visibility': 'on'
+      'visibility': 'on'
     }, {
-        'hue': '#1900ff'
+      'hue': '#1900ff'
     }, {
-        'color': '#c0e8e8'
+      'color': '#c0e8e8'
     }]
-}, {
+  }, {
     'featureType': 'poi.attraction',
     'elementType': 'geometry.fill',
     'stylers': [{
-        'color': '#ff0000'
+      'color': '#ff0000'
     }]
-}, {
+  }, {
     'featureType': 'poi.business',
     'elementType': 'geometry.fill',
     'stylers': [{
-        'color': '#00b1ac'
+      'color': '#00b1ac'
     }, {
-        'lightness': '36'
+      'lightness': '36'
     }, {
-        'saturation': '-19'
+      'saturation': '-19'
     }]
-}, {
+  }, {
     'featureType': 'poi.business',
     'elementType': 'labels.text.fill',
     'stylers': [{
-        'color': '#00b1ac'
+      'color': '#00b1ac'
     }, {
-        'lightness': '-30'
+      'lightness': '-30'
     }]
-}, {
+  }, {
     'featureType': 'poi.business',
     'elementType': 'labels.text.stroke',
     'stylers': [{
-        'weight': '0.77'
+      'weight': '0.77'
     }, {
-        'lightness': '-45'
+      'lightness': '-45'
     }, {
-        'color': '#ffffff'
+      'color': '#ffffff'
     }]
-}, {
+  }, {
     'featureType': 'poi.business',
     'elementType': 'labels.icon',
     'stylers': [{
-        'saturation': '-100'
+      'saturation': '-100'
     }, {
-        'lightness': '0'
+      'lightness': '0'
     }]
-}, {
+  }, {
     'featureType': 'poi.park',
     'elementType': 'labels.text.fill',
     'stylers': [{
-        'color': '#006562'
+      'color': '#006562'
     }, {
-        'lightness': '14'
+      'lightness': '14'
     }]
-}, {
+  }, {
     'featureType': 'road',
     'elementType': 'geometry',
     'stylers': [{
-        'lightness': 100
+      'lightness': 100
     }, {
-        'visibility': 'simplified'
+      'visibility': 'simplified'
     }]
-}, {
+  }, {
     'featureType': 'road',
     'elementType': 'labels',
     'stylers': [{
-        'visibility': 'off'
+      'visibility': 'off'
     }]
-}, {
+  }, {
     'featureType': 'transit',
     'elementType': 'all',
     'stylers': [{
-        'visibility': 'simplified'
+      'visibility': 'simplified'
     }]
-}, {
+  }, {
     'featureType': 'transit.line',
     'elementType': 'all',
     'stylers': [{
-        'visibility': 'off'
+      'visibility': 'off'
     }]
-}, {
+  }, {
     'featureType': 'transit.line',
     'elementType': 'geometry',
     'stylers': [{
-        'visibility': 'on'
+      'visibility': 'on'
     }, {
-        'lightness': 700
+      'lightness': 700
     }]
-}, {
+  }, {
     'featureType': 'transit.station',
     'elementType': 'all',
     'stylers': [{
-        'visibility': 'simplified'
+      'visibility': 'simplified'
     }]
-}, {
+  }, {
     'featureType': 'water',
     'elementType': 'all',
     'stylers': [{
-        'color': '#7dcdcd'
+      'color': '#7dcdcd'
     }]
-}, {
+  }, {
     'featureType': 'water',
     'elementType': 'geometry.fill',
     'stylers': [{
-        'color': '#007e7a'
+      'color': '#007e7a'
     }, {
-        'lightness': '23'
+      'lightness': '23'
     }]
-}, {
+  }, {
     'featureType': 'water',
     'elementType': 'geometry.stroke',
     'stylers': [{
-        'lightness': '-6'
+      'lightness': '-6'
     }]
-}, {
+  }, {
     'featureType': 'water',
     'elementType': 'labels.text.fill',
     'stylers': [{
-        'color': '#007e7a'
+      'color': '#007e7a'
     }, {
-        'lightness': '22'
+      'lightness': '22'
     }]
-}, {
+  }, {
     'featureType': 'water',
     'elementType': 'labels.text.stroke',
     'stylers': [{
-        'weight': '1.10'
+      'weight': '1.10'
     }]
-}];
+  }];
 
 
-function getPin(color) {
+  function getPin(color) {
     /** @credit: https://stackoverflow.com/posts/7686977/revisions */
     return new google.maps.MarkerImage('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + color,
-        new google.maps.Size(21, 34),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(10, 34)
+      new google.maps.Size(21, 34),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(10, 34)
     );
-}
+  }
 
-function initMap() {
-    var vm = ko.dataFor(document.body);
-
-    vm.map = new google.maps.Map(document.getElementById('map'), {
-        center: {
-            lat: 37.430594,
-            lng: -122.168581
-        }, // 20 Palm Drive, Stanford, CA 94305, USA
-        zoom: 16,
-        styles: styles,
-        mapTypeControl: false
-    });
-
-    // Try HTML5 geolocation
-    if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            vm.map.setCenter(pos);
-            vm.nearbySearch(vm.places, pos);
-          }, function() {
-            handleLocationError(true);
-          });
-        } else {
-            console.log("The Geolocation service failed.");
-            // Browser doesn't support Geolocation
-            handleLocationError();
-            vm.nearbySearch(vm.places);
-      }
-
-      function handleLocationError() {
-        alert('Error: The Geolocation service failed.');
-      }
-
-    vm.initializeInfoWindow();
-}
-
-var Place = function(data, vm) {
+  var Place = function(data, vm) {
     var self = this;
 
     this.name = data.name;
@@ -256,18 +221,18 @@ var Place = function(data, vm) {
     this.vicinity = data.vicinity;
 
     this.toggleVisibility = ko.computed(function() {
-        self.marker.setVisible(self.visible());
+      self.marker.setVisible(self.visible());
     });
 
-    this.marker.addListener('click', function(){
-        var marker = this;
-        vm.currentLocation(self);
-        vm.getPlacesDetails(marker);
-        vm.infoWindow.open(vm.map, marker)
+    this.marker.addListener('click', function() {
+      var marker = this;
+      vm.currentLocation(self);
+      vm.getPlacesDetails(marker);
+      vm.infoWindow.open(vm.map, marker)
     });
-};
+  };
 
-var ViewModel = function() {
+  var ViewModel = function() {
     var self = this;
 
     this.query = ko.observable('');
@@ -279,113 +244,159 @@ var ViewModel = function() {
     this.infoWindowData = ko.observableArray([]);
 
     this.filteredPlaces = ko.computed(function() {
-        var query = self.query().toLowerCase();
-        self.places().forEach(function(place) {
-            var name = place.name.toLowerCase();
-            var match = name.indexOf(query) != -1;
-            place.visible(match);
-        });
+      var query = self.query().toLowerCase();
+      self.places().forEach(function(place) {
+        var name = place.name.toLowerCase();
+        var match = name.indexOf(query) != -1;
+        place.visible(match);
+      });
     });
 
-};
+  };
 
-ViewModel.prototype.nearbySearch = function(places, position)  {
+  ViewModel.prototype.nearbySearch = function(places, position) {
     var self = this;
     var request = {
-        location: position,
-        radius: '1000',
-        types: ['art_gallery']
+      location: position,
+      radius: '1000',
+      types: ['art_gallery']
     };
 
     var service = new google.maps.places.PlacesService(self.map);
     service.nearbySearch(request, callback);
 
     function callback(results, status) {
-        if (status == google.maps.places.PlacesServiceStatus.OK) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
 
-            var defaultIcon = getPin('d50f25');
-            var highlightedIcon = getPin('FFFF24');
+        var defaultIcon = getPin('d50f25');
+        var highlightedIcon = getPin('FFFF24');
 
-           for (var i = 0; i < results.length; i++) {
-                var place = results[i];
-                var position = place.geometry.location;
-                var name = place.name;
-                var marker = new google.maps.Marker({
-                    position: position,
-                    map: self.map,
-                    icon: defaultIcon,
-                    title: name,
-                    animation: google.maps.Animation.Drop,
-                    id: results[i].place_id
-                });
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          var position = place.geometry.location;
+          var name = place.name;
+          var marker = new google.maps.Marker({
+            position: position,
+            map: self.map,
+            icon: defaultIcon,
+            title: name,
+            animation: google.maps.Animation.Drop,
+            id: results[i].place_id
+          });
 
-                marker.addListener('mouseover', function(){
-                    this.setIcon(highlightedIcon);
-                });
+          marker.addListener('mouseover', function() {
+            this.setIcon(highlightedIcon);
+          });
 
-                marker.addListener('mouseout', function(){
-                    this.setIcon(defaultIcon);
-                });
+          marker.addListener('mouseout', function() {
+            this.setIcon(defaultIcon);
+          });
 
-                place.marker = marker;
-                places.push(new Place(place, self));
-                   
-            }
+          place.marker = marker;
+          places.push(new Place(place, self));
+
         }
+      }
     }
-};
+  };
 
-ViewModel.prototype.getPlacesDetails = function(marker) {
+  ViewModel.prototype.getPlacesDetails = function(marker) {
     var self = this;
     self.infoWindowData([]);
 
     var service = new google.maps.places.PlacesService(self.map);
     service.getDetails({
-        placeId: marker.id
+      placeId: marker.id
     }, function(place, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
         // Set the marker property on this infowindow so it isn't created again.
 
-            if (place.name) {
-                self.infoWindowData.push(place.name); 
-            }
-
-            if (place.formatted_address) {
-                self.infoWindowData.push(place.formatted_phone_number);
-            }
-
-            if (place.photos) {
-                self.infoWindowData.push(place.photos[0].getUrl(
-                    {maxHeight: 100, maxWidth: 200}));
-            }
+        if (place.name) {
+          self.infoWindowData.push(place.name);
         }
-    });
-};
 
-ViewModel.prototype.initializeInfoWindow = function() {
+        if (place.formatted_address) {
+          self.infoWindowData.push(place.formatted_phone_number);
+        }
+
+        if (place.photos) {
+          self.infoWindowData.push(place.photos[0].getUrl({
+            maxHeight: 100,
+            maxWidth: 200
+          }));
+        }
+      }
+    });
+  };
+
+  ViewModel.prototype.initializeInfoWindow = function() {
     var self = this;
     var contentString = '<div id="info-window"' + 'data-bind="template: { name: \'info-window-template\', data: infoWindowData}">' + '</div>';
     var isInfoWindowLoaded = false;
 
     self.infoWindow = new google.maps.InfoWindow({
-        content: contentString
+      content: contentString
     });
 
     /*
      * When the info window opens, bind it to Knockout.
      * Only do this once.
      */
-    google.maps.event.addListener(self.infoWindow, 'domready', function () {
-        if (!isInfoWindowLoaded) {
-            ko.applyBindings(self, $('#info-window')[0]);
-            isInfoWindowLoaded = true;
-        }
+    google.maps.event.addListener(self.infoWindow, 'domready', function() {
+      if (!isInfoWindowLoaded) {
+        ko.applyBindings(self, $('#info-window')[0]);
+        isInfoWindowLoaded = true;
+      }
     });
-};
+  };
 
-ViewModel.prototype.activateMarker = function(place) {
+  ViewModel.prototype.activateMarker = function(place) {
     var marker = place.marker;
     google.maps.event.trigger(marker, 'click');
-};
+  };
 
-ko.applyBindings(new ViewModel());
+  ViewModel.prototype.initMap = function() {
+
+    var self = this;
+
+    this.map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: 37.430594,
+        lng: -122.168581
+      }, // 20 Palm Drive, Stanford, CA 94305, USA
+      zoom: 16,
+      styles: styles,
+      mapTypeControl: false
+    });
+
+    // Try HTML5 geolocation
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        self.map.setCenter(pos);
+        self.nearbySearch(self.places, pos);
+      }, function() {
+        handleLocationError(true);
+      });
+    } else {
+      console.log("The Geolocation service failed.");
+      // Browser doesn't support Geolocation
+      handleLocationError();
+      self.nearbySearch(self.places);
+    }
+
+    function handleLocationError() {
+      alert('Error: The Geolocation service failed.');
+    }
+
+    this.initializeInfoWindow();
+  }
+
+  app.vm = new ViewModel();
+
+  ko.applyBindings(app.vm);
+
+});
