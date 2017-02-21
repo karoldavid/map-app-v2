@@ -241,6 +241,7 @@ $(function() {
 
     this.marker.addListener('click', function() {
       var marker = this;
+      vm.map.panTo(marker.getPosition())
       vm.currentLocation(self);
       vm.getPlacesDetails(marker);
       vm.infoWindow.open(vm.map, marker)
@@ -268,6 +269,10 @@ $(function() {
 
     this.filteredPlaces = ko.computed(function() {
       var query = self.query().toLowerCase();
+
+      if (self.infoWindow) { 
+        self.infoWindow.close();
+      }
       self.places().forEach(function(place) {
         var name = place.name.toLowerCase();
         var match = name.indexOf(query) != -1;
@@ -383,7 +388,6 @@ $(function() {
   };
 
   ViewModel.prototype.initMap = function() {
-
     var self = this;
 
     this.map = new google.maps.Map(document.getElementById('map'), {
