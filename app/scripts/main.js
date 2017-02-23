@@ -260,26 +260,9 @@ $(function() {
     var self = this;
 
     this.query = ko.observable('');
-
     this.places = ko.observableArray([]);
-
     this.currentLocation = ko.observable('');
-
     this.infoWindowData = ko.observableArray([]);
-
-    this.filteredPlaces = ko.computed(function() {
-      var query = self.query().toLowerCase();
-
-      if (self.infoWindow) { 
-        self.infoWindow.close();
-      }
-      self.places().forEach(function(place) {
-        var name = place.name.toLowerCase();
-        var match = name.indexOf(query) != -1;
-        place.visible(match);
-      });
-    });
-
   };
 
   ViewModel.prototype.nearbySearch = function(places, position) {
@@ -402,10 +385,22 @@ $(function() {
 
     this.getPlaces();
     this.initializeInfoWindow();
-  }
+  };
 
   app.vm = new ViewModel();
-
   ko.applyBindings(app.vm);
+
+  ViewModel.prototype.filteredPlaces = ko.computed(function() {
+      var query = this.query().toLowerCase();
+
+      if (this.infoWindow) { 
+        this.infoWindow.close();
+      }
+      this.places().forEach(function(place) {
+        var name = place.name.toLowerCase();
+        var match = name.indexOf(query) != -1;
+        place.visible(match);
+      });
+    }, app.vm);
 
 });
